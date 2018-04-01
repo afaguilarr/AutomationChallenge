@@ -24,5 +24,8 @@ SUPER BONUS
 
 #SUPER BONUS EXPLANATION
 
-
+1. I used protractor-cucumber framework to build the UI tests, this framework is the implementation of the gherkin language plus the protractor framework, in the following [folder, here in this same project](https://github.com/afaguilarr/AutomationChallenge/tree/master/UserInterface/features), you can see the .feature files which describe the User stories showed before.
+2. They are already included in the following [folder of our team project]()   PENDIENTE.
+3. This is actually pretty blurry, we made so much and at the same time so little on that class, so let's think that all of our User stories were built on that class.
+4. All the tests are testing the already shared applications, none of them are testing local environments like localhost or anything like that. Here is the [Front-end application](https://praxis-integrador-frontend.herokuapp.com/) and here is the [Back-end application](https://praxis-integrador-backend.herokuapp.com)
 
