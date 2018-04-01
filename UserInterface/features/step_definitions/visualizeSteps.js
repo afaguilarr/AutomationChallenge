@@ -1,4 +1,4 @@
-// features/step_definitions/visualizeSteps.js
+﻿// features/step_definitions/visualizeSteps.js
 
 var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');
@@ -109,9 +109,10 @@ module.exports = function() {
 	});
 	
 	this.Then(/^I can see it on the table$/, function () {
-	  let elem = element.all(by.tagName('mat-row'));
-	  let length = elem.count().then(function(count){
-		  let cell = element(by.xpath('/html/body/app-root/app-topic/div/div/div[2]/mat-table/mat-row[' + count + ']/mat-cell[1]'));
+	  let elem = element.all(by.css('body > app-root > app-topic > div > div > div.example-container.mat-elevation-z2 > mat-table > mat-row > mat-cell.mat-cell.cdk-column-name.mat-column-name.ng-star-inserted'));
+	  let length;
+	  return length = elem.count().then(function(count){
+		  let cell = elem.get(count-1);
 		  return expect(cell.getText()).to.eventually.contain(randomTopic);
 	  });
 	});

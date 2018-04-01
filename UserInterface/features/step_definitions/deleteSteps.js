@@ -31,9 +31,9 @@ module.exports = function() {
 		return (expect(differentName.getText()).to.not.equal(deletedName));
     });
 	
-	this.When(/^I wait for a while$/, function () {
+	this.Given(/^I wait for some seconds$/, function () {
 	  // Write code here that turns the phrase above into concrete actions
-	  return browser.sleep(1000);
+	  return browser.sleep(2000);
 	});
 	
 	this.When(/^I click add topic button$/, function () {
@@ -62,9 +62,10 @@ module.exports = function() {
 	
 	this.Then(/^I can see the topic is added again$/, function ()
 	{// Write code here that turns the phrase above into concrete actions
-		let elem = element.all(by.tagName('mat-row'));
-		let length = elem.count().then(function(count){
-		  let cell = element(by.xpath('/html/body/app-root/app-topic/div/div/div[2]/mat-table/mat-row[' + count + ']/mat-cell[1]'));
+		let elem = element.all(by.css('body > app-root > app-topic > div > div > div.example-container.mat-elevation-z2 > mat-table > mat-row > mat-cell.mat-cell.cdk-column-name.mat-column-name.ng-star-inserted'));
+	  let length;
+	  length = elem.count().then(function(count){
+		  let cell = elem.get(count-1);
 		  return expect(cell.getText()).to.eventually.contain(deletedName);
 	  });
 	});
@@ -81,10 +82,10 @@ module.exports = function() {
 	  return noButton.click();
 	});
 	
-	this.When(/^I wait for a while again$/, function () {
+	/*this.Given(/^I wait for "([^"]*)" seconds$/, function (seconds) {
 	  // Write code here that turns the phrase above into concrete actions
-	  return browser.sleep(1000);
-	});
+	  return browser.sleep(1000*seconds);
+	});*/
 	
 	this.Then(/^the process is canceled$/, function ()
 	{// Write code here that turns the phrase above into concrete actions

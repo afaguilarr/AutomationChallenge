@@ -9,14 +9,15 @@ Feature: Topic removal
 		When I click remove topic
 		When I click yes
 		Then the topic is removed and I can not see the topic in the table
-		When I wait for a while
+		And I wait for some seconds
 		When I click add topic button
 		When I fill in the name blank with the deleted topic's name
 		When I click in the experience blank
 		When I add the experience with the deleted topic's experience
 		When I try to add the topic again
+		And I wait for some seconds
 		Then I can see the topic is added again
 		When I click remove topic again
 		When I click no
-		When I wait for a while again
+		And I wait for some seconds
 		Then the process is canceled

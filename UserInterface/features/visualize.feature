@@ -18,4 +18,5 @@ Feature: Topic visualization
 		When I add the experience again
 		When I fill in the description blank
 		When I try to add the new topic again
+		And I wait for some seconds
 		Then I can see it on the table
