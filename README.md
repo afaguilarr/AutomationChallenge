@@ -19,7 +19,7 @@ SUPER BONUS
 3. Here it is on GitHub, I will explain things clearly.
 * My UI tests are testing the acceptance criteria that are in the User stories I shared before, They are testing the visualization of the topics where they make sure the topics can be seen in the right format, an added topic can be seen on the topics table and there is one criteria that can't be tested in this moment on that user story, it's the pagination criteria, the thing is the functionality is not yet implemented, so there is nothing to test in the UI. They are testing also the deletion of the topics where they make sure a topic is in fact deleted from the topics table, a deleted topic can be added again, and the topic deletion process can be cancelled.
 * My API tests are testing............................
-* To run the UI tests you have to open two command lines in the "UserInterface" folder. In one of them you will execute the following command: (.\node_modules\.bin\webdriver-manager.cmd start), when the console tells you selenium is up and running you will introduce in the second command line the following command: (.\node_modules\.bin\protractor.cmd protractor.conf.js). Like this, all the UI tests will run.
+* To run the UI tests you have to open two command lines in the "UserInterface" folder. In one of them you will execute the following command: (.\node_modules\.bin\webdriver-manager.cmd start) **(WARNING, THERE MUST BE A BACKSLASH BEFORE .bin BUT GITHUB DOESN'T LET ME SHOW IT)**, when the console tells you selenium is up and running you will introduce in the second command line the following command: (.\node_modules\.bin\protractor.cmd protractor.conf.js) **(SAME WARNING AS BEFORE)**. Like this, all the UI tests will run.
 * To run the API tests.......................
 
 #SUPER BONUS EXPLANATION
@@ -27,5 +27,5 @@ SUPER BONUS
 1. I used protractor-cucumber framework to build the UI tests, this framework is the implementation of the gherkin language plus the protractor framework, in the following [folder, here in this same project](https://github.com/afaguilarr/AutomationChallenge/tree/master/UserInterface/features), you can see the .feature files which describe the User stories showed before.
 2. They are already included in the following [folder of our team project]()   PENDIENTE.
 3. This is actually pretty blurry, we made so much and at the same time so little on that class, so let's think that all of our User stories were built on that class.
-4. All the tests are testing the already shared applications, none of them are testing local environments like localhost or anything like that. Here is the [Front-end application](https://praxis-integrador-frontend.herokuapp.com/) and here is the [Back-end application](https://praxis-integrador-backend.herokuapp.com)
+4. All the tests are testing the already shared applications, none of them are testing local environments like localhost or anything like that. Here is the [Front-end application](https://praxis-integrador-frontend.herokuapp.com/) and here is the [Back-end application](https://praxis-integrador-backend.herokuapp.com).
 
