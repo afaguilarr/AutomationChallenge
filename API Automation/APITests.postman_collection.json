@@ -1,0 +1,288 @@
+{
+	"info": {
+		"name": "APITests",
+		"_postman_id": "d1f2fada-1648-4d3e-a7e4-c239401bad18",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getCollaborators",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "82cc94ae-8a81-4ea0-a1fe-328bd6b26bc2",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"//checks whether an Array is in fact an Array of Collaborators",
+							"function isCollaborator(values){",
+							"    for(let value of values){",
+							"        if(!value.hasOwnProperty(\"id\") ||",
+							"            !value.hasOwnProperty(\"name\") ||",
+							"            !value.hasOwnProperty(\"email\") ||",
+							"            !value.hasOwnProperty(\"topicsToTeach\") ||",
+							"            !value.hasOwnProperty(\"topicsToLearn\") ||",
+							"            !value.hasOwnProperty(\"createdAt\") ){",
+							"                ",
+							"            return false;",
+							"        }",
+							"    }",
+							"    return true;",
+							"}",
+							"",
+							"pm.test(\"It gets an array composed of collaborators\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(isCollaborator(jsonData)).to.eql(true);",
+							"});",
+							"",
+							"",
+							"function checkId(values){",
+							"    for(let value of values){",
+							"        if(value.id){",
+							"        } else {",
+							"            return false;",
+							"        }",
+							"    }",
+							"    return true;",
+							"}",
+							"",
+							"function checkDetailValues(values){",
+							"    for(let value of values){",
+							"        var topicsToTeachList = value.topicsToTeach;",
+							"        for(let topicToTeach of topicsToTeachList){",
+							"            if(topicToTeach.expertise === undefined && topicToTeach.topic === undefined && topicToTeach.addedAt === undefined){",
+							"                return false;",
+							"            }",
+							"        }",
+							"        return true;",
+							"    }",
+							"}",
+							"",
+							"pm.test(\"Collaborators topicsToTeach expertise, topic and date are not undefined\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(checkDetailValues(jsonData)).to.eql(true);",
+							"});",
+							"",
+							"function checkTopicValues(values){",
+							"    for(let value of values){",
+							"        var topicsToTeachList = value.topicsToTeach;",
+							"        for(let topicToTeach of topicsToTeachList){",
+							"            if(topicToTeach.topic.id === undefined && topicToTeach.topic.name === undefined && topicToTeach.topic.description === undefined){",
+							"                return false;",
+							"            }",
+							"        }",
+							"        return true;",
+							"    }",
+							"}",
+							"",
+							"pm.test(\"Collaborators topicsToTeach topics id, name and description are not undefined\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(checkTopicValues(jsonData)).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Collaborators id is not undefined\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(checkId(jsonData)).to.eql(true);",
+							"});",
+							"",
+							"/*",
+							"    It is very important that neither topicsToTeach nor topicsToLearn are undefined",
+							"    because we are going to do CRUD operations over these arrays",
+							"*/",
+							"",
+							"function areArraysDefined(values){",
+							"    for(let value of values){",
+							"        if(value.topicsToTeach === undefined || value.topicsToTeach === null){",
+							"            return false;   ",
+							"        }",
+							"        if(value.topicsToLearn === undefined || value.topTeachTeach === null){",
+							"            return false;            ",
+							"        }",
+							"    }",
+							"    return true;",
+							"}",
+							"",
+							"pm.test(\"Collaborators topicsToTeach and topicsToLearn are not null nor undefined\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(areArraysDefined(jsonData)).to.eql(true);",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "queryParams",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"expertise\": \"1\",\n    \"topic\": {\n        \"name\": \"C++\",\n        \"description\": \"Created from postman!!\"\n    }\n}"
+				},
+				"url": {
+					"raw": "https://praxis-integrador-backend.herokuapp.com/collaborators",
+					"protocol": "https",
+					"host": [
+						"praxis-integrador-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"collaborators"
+					]
+				},
+				"description": "The service \"GET /collaborators\" is tested"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteDetail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "67d230e7-06e1-4242-9aed-aa4fa8afdef2",
+						"type": "text/javascript",
+						"exec": [
+							"//setting up variables that will be used throughout the test",
+							"",
+							"console.log(\"topic to be deleted: \" + pm.globals.get('topicTestId'));",
+							"console.log(\"collaboratorId:    \" + pm.globals.get('collaboratorId'));",
+							"console.log(\"topicsToTeach:\");",
+							"console.log(pm.environment.get('topicsToTeach'));",
+							"console.log(\"topicsToLearn:\");",
+							"console.log(pm.environment.get('topicsToLearn'));",
+							"",
+							"/*Deleting the test topic from \"Topics\"*/",
+							"var url = \"https://praxis-integrador-backend.herokuapp.com/topics/\" + pm.globals.get('topicTestId') ;",
+							"pm.sendRequest({",
+							"    url: url,",
+							"    method: 'DELETE'",
+							"}, function (err, res) {",
+							"    console.log(res);",
+							"});",
+							"",
+							"function checkId(values){",
+							"    for(let value of values){",
+							"        if(value.topic.name === \"PHP\"){",
+							"            return false;",
+							"        } ",
+							"    }",
+							"    return true;",
+							"}",
+							"",
+							"pm.test(\"The added detail is not in the array\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(checkId(jsonData)).to.eql(true);",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							"/*",
+							"    API_add_detail must be executed first otherwise this ",
+							"*/",
+							"",
+							"",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3a85e6f7-b397-438c-98b8-5fb1890a9f08",
+						"type": "text/javascript",
+						"exec": [
+							"pm.sendRequest(\"https://praxis-integrador-backend.herokuapp.com/collaborators/\", function (err, response) {",
+							"    let i = 0;",
+							"    while(response.json()[i].topicsToTeach === null){",
+							"        i = i + 1;",
+							"    }",
+							"    pm.globals.set('collaboratorId', response.json()[i].id);",
+							"    pm.environment.set('topicsToLearn', response.json()[i].topicsToLearn);",
+							"    pm.environment.set('topicsToTeach', response.json()[i].topicsToTeach);",
+							"});",
+							"",
+							"var url = \"https://praxis-integrador-backend.herokuapp.com/collaborators/\" + pm.globals.get('collaboratorId') + \"/topicsToTeach/\";",
+							"pm.sendRequest({",
+							"    url: url,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'content-type': 'application/json'",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({",
+							"                                topic: {",
+							"                                    name: \"PHP\",",
+							"                                    description: \"Created from postman\"",
+							"                                },",
+							"                                expertise: \"1\"",
+							"                            })",
+							"    }",
+							"}, function (err, res) {",
+							"    for(let value of res.json()){",
+							"        if(value.topic.name === \"PHP\"){",
+							"            pm.globals.set('topicTestId', value.topic.id);",
+							"        }",
+							"    }",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://praxis-integrador-backend.herokuapp.com/collaborators/{{collaboratorId}}/topicsToTeach/{{topicTestId}}",
+					"protocol": "https",
+					"host": [
+						"praxis-integrador-backend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"collaborators",
+						"{{collaboratorId}}",
+						"topicsToTeach",
+						"{{topicTestId}}"
+					]
+				},
+				"description": "This test adds the detail of the topic: \"PHP\" then it deletes \"PHP\" and checks that \"PHP\" no longer exists in topicsToTeach"
+			},
+			"response": []
+		}
+	]
+}
