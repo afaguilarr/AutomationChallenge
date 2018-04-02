@@ -22,7 +22,7 @@ SUPER BONUS
 * To run the UI tests you have to open two command lines in the "UserInterface" folder. In one of them you will execute the following command: (.\node_modules\.bin\webdriver-manager.cmd start) **(WARNING, THERE MUST BE A BACKSLASH BEFORE .bin BUT GITHUB DOESN'T LET ME SHOW IT)**, when the console tells you selenium is up and running you will introduce in the second command line the following command: (.\node_modules\.bin\protractor.cmd protractor.conf.js) **(SAME WARNING AS BEFORE)**. Like this, all the UI tests will run.
 * To run the API tests you must only download the APITests.postman_collection.json file in the following folder [(the API tests folder here in this project)](https://github.com/afaguilarr/AutomationChallenge/tree/master/API%20Automation) and import it in postman to run it in the postman collection runner.
 
-#SUPER BONUS EXPLANATION
+# SUPER BONUS EXPLANATION
 
 1. I used protractor-cucumber framework to build the UI tests, this framework is the implementation of the gherkin language plus the protractor framework, in the following [folder, here in this same project](https://github.com/afaguilarr/AutomationChallenge/tree/master/UserInterface/features), you can see the .feature files which describe the User stories showed before.
 2. They are already included in the following [folder of our team project]()   PENDIENTE.
