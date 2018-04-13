@@ -5,7 +5,7 @@ Feature: Topic visualization
 	In order to access the information I had previously created
 	
 	Scenario: Visualize topics test
-		Given I go to "https://praxis-integrador-frontend.herokuapp.com"
+		Given I go to "https://praxis-frontend.herokuapp.com"
 		Then I should see the topics to guide table with name, description, expertice, addition date, link, edit button and remove button
 		Then I should see the topics to guide title
 		Then I should see my name above the table

@@ -14,7 +14,7 @@ exports.config = {
 
     frameworkPath: require.resolve('protractor-cucumber-framework'), // Here it is
   
-	baseURL: 'https://praxis-integrador-frontend.herokuapp.com',
+	baseURL: 'https://praxis-frontend.herokuapp.com',
   
   cucumberOpts: {
         //format: './node_modules/pretty',
@@ -29,7 +29,7 @@ exports.config = {
 
     /*params: {
         env: {
-            hostname: 'https://praxis-integrador-frontend.herokuapp.com' // Whatever the address of your app is
+            hostname: 'https://praxis-frontend.herokuapp.com' // Whatever the address of your app is
 
         }*/
 

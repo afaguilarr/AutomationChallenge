@@ -5,7 +5,7 @@ Feature: Topic removal
 	In order to keep my information updated
 	
 	Scenario: Delete topics test
-		Given I go to "https://praxis-integrador-frontend.herokuapp.com"
+		Given I go to "https://praxis-frontend.herokuapp.com"
 		When I click remove topic
 		When I click yes
 		Then the topic is removed and I can not see the topic in the table
