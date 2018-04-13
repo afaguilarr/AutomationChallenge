@@ -142,10 +142,10 @@
 					"raw": "{\n    \"expertise\": \"1\",\n    \"topic\": {\n        \"name\": \"C++\",\n        \"description\": \"Created from postman!!\"\n    }\n}"
 				},
 				"url": {
-					"raw": "https://praxis-integrador-backend.herokuapp.com/collaborators",
+					"raw": "https://users-notes.herokuapp.com/collaborators",
 					"protocol": "https",
 					"host": [
-						"praxis-integrador-backend",
+						"users-notes",
 						"herokuapp",
 						"com"
 					],
@@ -176,7 +176,7 @@
 							"console.log(pm.environment.get('topicsToLearn'));",
 							"",
 							"/*Deleting the test topic from \"Topics\"*/",
-							"var url = \"https://praxis-integrador-backend.herokuapp.com/topics/\" + pm.globals.get('topicTestId') ;",
+							"var url = \"https://users-notes.herokuapp.com/topics/\" + pm.globals.get('topicTestId') ;",
 							"pm.sendRequest({",
 							"    url: url,",
 							"    method: 'DELETE'",
@@ -216,7 +216,7 @@
 						"id": "3a85e6f7-b397-438c-98b8-5fb1890a9f08",
 						"type": "text/javascript",
 						"exec": [
-							"pm.sendRequest(\"https://praxis-integrador-backend.herokuapp.com/collaborators/\", function (err, response) {",
+							"pm.sendRequest(\"https://users-notes.herokuapp.com/collaborators/\", function (err, response) {",
 							"    let i = 0;",
 							"    while(response.json()[i].topicsToTeach === null){",
 							"        i = i + 1;",
@@ -226,7 +226,7 @@
 							"    pm.environment.set('topicsToTeach', response.json()[i].topicsToTeach);",
 							"});",
 							"",
-							"var url = \"https://praxis-integrador-backend.herokuapp.com/collaborators/\" + pm.globals.get('collaboratorId') + \"/topicsToTeach/\";",
+							"var url = \"https://users-notes.herokuapp.com/collaborators/\" + pm.globals.get('collaboratorId') + \"/topicsToTeach/\";",
 							"pm.sendRequest({",
 							"    url: url,",
 							"    method: 'POST',",
@@ -266,10 +266,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://praxis-integrador-backend.herokuapp.com/collaborators/{{collaboratorId}}/topicsToTeach/{{topicTestId}}",
+					"raw": "https://users-notes.herokuapp.com/collaborators/{{collaboratorId}}/topicsToTeach/{{topicTestId}}",
 					"protocol": "https",
 					"host": [
-						"praxis-integrador-backend",
+						"users-notes",
 						"herokuapp",
 						"com"
 					],
